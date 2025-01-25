@@ -4,6 +4,7 @@ using namespace std;
 #define array_not_created 2
 #define arrary_overflow 3
 #define IndexInavalid 4
+#define null_pointer_error 5
  class Array{
     private:
         int capacity;
@@ -12,6 +13,7 @@ using namespace std;
     public:
         Array(int);
         Array(Array&);
+        Array& operator=(Array &);
         void createArray(int);
         bool isempty();
         void append(int );
@@ -24,6 +26,29 @@ using namespace std;
         virtual ~Array();
         int find(int);
 };
+Array& Array::operator=(Array &arr){
+
+    if(this!=&arr){
+        if(arr.ptr==nullptr){
+            throw null_pointer_error;
+        }
+        if(ptr!=nullptr){
+            delete []ptr;
+            ptr=nullptr;
+            }
+        capacity=arr.capacity;
+        lastIndex=arr.lastIndex;
+         ptr=new int[capacity];
+         for(int i=0;i<=arr.lastIndex;i++)
+            ptr[i]=arr.ptr[i];
+        
+        }
+        return *this; 
+        
+           
+     }
+ 
+
 Array::Array(int size){
     ptr=nullptr;
     if(size<1)
@@ -32,6 +57,7 @@ Array::Array(int size){
     lastIndex=-1;
     ptr = new int [capacity];   
 }
+
 void Array::createArray(int size){
     if(ptr==nullptr){
         if(size<1)
@@ -128,12 +154,15 @@ Array::Array(Array &a){
   capacity=a.capacity;
   lastIndex=a.lastIndex;
    if(a.ptr==nullptr)
-    throw array_not_created;
-    else
-         for(int i=0;i<=lastIndex;i++){
+        ptr=nullptr;
+    else{ 
+        ptr=new int[capacity];
+         for(int i=0;i<=a.lastIndex;i++)
              ptr[i]=a.ptr[i];
          }       
 };
+
+
 int main(){
     Array a1(5);
     Array a2=a1;

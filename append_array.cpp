@@ -35,8 +35,6 @@ void Array::createArray(int size){
     if(ptr==nullptr){
         if(size<1)
             throw invalid_capacity;
-            if(size<1)
-            throw invalid_capacity;
             capacity = size;
             lastIndex=-1;
             ptr = new int [capacity];    
