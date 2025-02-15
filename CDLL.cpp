@@ -17,7 +17,6 @@ class CDLL{
         void insertNode(node *,int);
         void deleteFirst();
         void deletelast();
-
 };
 CDLL::CDLL(){
     start = nullptr;

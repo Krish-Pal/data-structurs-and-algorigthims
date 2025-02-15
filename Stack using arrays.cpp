@@ -15,5 +15,6 @@ Stack::Stack(int cap,int t,int *pointer){
     ptr=pointer;
 }
 void Stack::push(int data){
-    
+    int * p = new int;
+        *p=data;
 }
